@@ -69,6 +69,17 @@ nav.scrolled{padding:8px 5%}
 .hero-stats strong{font-family:'Bebas Neue';font-size:2rem;display:block;color:var(--orange-light)}
 .hero-stats small{font-size:.78rem;color:rgba(255,255,255,.7)}
 .hero-croco{display:flex;justify-content:center;animation:fadeUp 1s .3s both}
+
+  .hero-logo{
+  width:100%;
+  max-width:300px;
+  height:auto;
+  display:block;
+  margin:0 auto;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 20px 35px rgba(0,0,0,.25));
+}
+  
 .hero-croco svg{width:100%;max-width:380px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35));animation:float 4s ease-in-out infinite}
 .hero-wave{position:absolute;bottom:-1px;left:0;width:100%;z-index:3}
 
@@ -269,7 +280,7 @@ footer{background:var(--dark);color:#fff;padding:60px 5% 30px}
     <div class="hero-croco">
       <div style="position:relative">
         <div style="position:absolute;inset:-30px;border-radius:50%;background:rgba(255,122,26,.18);filter:blur(10px);animation:pulse 5s ease-in-out infinite"></div>
-        <img src="imgs/crocodilo-logo.png" alt="Jacaré chef Crocodilos" style="position:relative;width:100%;max-width:340px;border-radius:28px;box-shadow:0 25px 60px rgba(0,0,0,.4);animation:float 4s ease-in-out infinite">
+        <img src="imgs/crocodilo-logo-nova.png" alt="Jacaré chef Crocodilos" class="hero-logo">
       </div>
     </div>
   </div>
