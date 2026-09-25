@@ -540,6 +540,13 @@ CATS.forEach(c=>{
   tabsEl.appendChild(b);
 });
 
+tabsEl.addEventListener("wheel", (e) => {
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    e.preventDefault();
+    tabsEl.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
+
 /* Search */
 document.getElementById("search").addEventListener("input", renderMenu);
 
