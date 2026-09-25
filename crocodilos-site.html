@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crocodilos | Grill e Lanches — Balneário Camboriú</title>
+<link rel="icon" href="imgs/crocodilo-logo.png">
+<meta name="description" content="Crocodilos Grill e Lanches em Balneário Camboriú. Hambúrgueres artesanais, grelhados, massas, feijoada e muito mais. Peça direto pelo site!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1e6b3a; --green-dark:#0f3d21; --green-light:#2e8b52;
+  --orange:#ff7a1a; --orange-light:#ffa04d; --cream:#fff8ee;
+  --dark:#151a16; --card:#ffffff; --gray:#6b7280;
+  --shadow:0 10px 40px rgba(15,61,33,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+h1,h2,h3,.logo-font{font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:10px}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5%;background:rgba(255,248,238,.92);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.06);transition:all .3s}
+nav.scrolled{padding:8px 5%}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo svg{width:44px;height:44px;animation:float 3s ease-in-out infinite}
+.nav-logo span{font-family:'Bebas Neue';font-size:1.8rem;color:var(--green-dark);letter-spacing:2px}
+.nav-logo span em{color:var(--orange);font-style:normal}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--dark);font-weight:500;font-size:.92rem;position:relative;transition:color .25s}
+.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--orange);transition:width .3s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a:hover::after{width:100%}
+.cart-btn{position:relative;background:var(--green);color:#fff;border:none;padding:10px 20px;border-radius:50px;
+  font-family:'Poppins';font-weight:600;font-size:.88rem;cursor:pointer;display:flex;align-items:center;gap:8px;
+  transition:transform .2s, background .2s}
+.cart-btn:hover{background:var(--green-dark);transform:scale(1.05)}
+.cart-count{position:absolute;top:-8px;right:-8px;background:var(--orange);color:#fff;font-size:.72rem;font-weight:700;
+  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform .25s cubic-bezier(.68,-0.55,.27,1.55)}
+.cart-count.show{transform:scale(1)}
+.burger-menu{display:none;background:none;border:none;cursor:pointer;font-size:1.6rem;color:var(--green-dark)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 5% 60px;
+  background:linear-gradient(135deg,var(--green-dark) 0%,var(--green) 55%,#1a5c33 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(255,122,26,.12);top:-200px;right:-150px;animation:pulse 6s ease-in-out infinite}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.05);bottom:-120px;left:-100px}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:2;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  color:#fff;padding:8px 18px;border-radius:50px;font-size:.82rem;font-weight:500;margin-bottom:22px;animation:fadeUp .8s both}
+.hero-badge .dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:blink 1.5s infinite}
+.hero h1{font-size:clamp(3.2rem,7vw,5.5rem);color:#fff;line-height:.95;animation:fadeUp .8s .15s both}
+.hero h1 span{color:var(--orange);display:block}
+.hero p{color:rgba(255,255,255,.85);font-size:1.05rem;font-weight:300;margin:20px 0 32px;max-width:480px;animation:fadeUp .8s .3s both}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s .45s both}
+.btn-primary{background:var(--orange);color:#fff;padding:16px 34px;border-radius:50px;text-decoration:none;font-weight:600;
+  font-size:.95rem;box-shadow:0 8px 25px rgba(255,122,26,.4);transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,122,26,.55)}
+.btn-ghost{background:transparent;color:#fff;padding:16px 34px;border-radius:50px;text-decoration:none;font-weight:600;
+  font-size:.95rem;border:2px solid rgba(255,255,255,.4);transition:all .25s}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero-stats{display:flex;gap:36px;margin-top:48px;animation:fadeUp .8s .6s both}
+.hero-stats div{color:#fff}
+.hero-stats strong{font-family:'Bebas Neue';font-size:2rem;display:block;color:var(--orange-light)}
+.hero-stats small{font-size:.78rem;color:rgba(255,255,255,.7)}
+.hero-croco{display:flex;justify-content:center;animation:fadeUp 1s .3s both}
+.hero-croco svg{width:100%;max-width:380px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35));animation:float 4s ease-in-out infinite}
+.hero-wave{position:absolute;bottom:-1px;left:0;width:100%;z-index:3}
+
+/* ===== SECTIONS ===== */
+section{padding:80px 5%}
+.section-head{text-align:center;max-width:640px;margin:0 auto 50px}
+.section-tag{color:var(--orange);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:3px;display:block;margin-bottom:10px}
+.section-head h2{font-size:clamp(2.2rem,5vw,3.2rem);color:var(--green-dark)}
+.section-head p{color:var(--gray);margin-top:12px;font-weight:300}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== MENU ===== */
+.menu-controls{position:sticky;top:66px;z-index:50;background:rgba(255,248,238,.95);backdrop-filter:blur(10px);padding:14px 0;margin:-20px 0 30px}
+.tabs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px;scrollbar-width:none;max-width:1100px;margin:0 auto 14px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;padding:10px 22px;border-radius:50px;border:2px solid #e5ddcf;background:#fff;font-family:'Poppins';
+  font-weight:600;font-size:.85rem;cursor:pointer;color:var(--dark);transition:all .25s}
+.tab:hover{border-color:var(--green);color:var(--green)}
+.tab.active{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 6px 18px rgba(30,107,58,.35)}
+.search-wrap{max-width:1100px;margin:0 auto;position:relative}
+.search-wrap input{width:100%;padding:14px 20px 14px 48px;border-radius:50px;border:2px solid #e5ddcf;background:#fff;
+  font-family:'Poppins';font-size:.92rem;outline:none;transition:border .25s}
+.search-wrap input:focus{border-color:var(--orange)}
+.search-wrap svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--gray)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;max-width:1100px;margin:0 auto}
+.mc-img{width:100%;height:170px;object-fit:cover;display:block}
+.mc-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.menu-card{background:var(--card);border-radius:20px;padding:0;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  transition:transform .3s, box-shadow .3s;border:1px solid rgba(0,0,0,.03);display:flex;flex-direction:column}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(15,61,33,.18)}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--orange),var(--green));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.menu-card:hover::before{transform:scaleX(1)}
+.mc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mc-top h3{margin-top:2px}
+.mc-top h3{font-size:1.25rem;color:var(--green-dark);line-height:1.1}
+.mc-price{font-family:'Bebas Neue';font-size:1.5rem;color:var(--orange);white-space:nowrap}
+.menu-card p{font-size:.83rem;color:var(--gray);font-weight:300;margin:10px 0 14px;line-height:1.5;flex:1}
+.mc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.mc-tags span{font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:20px;background:#eef7f0;color:var(--green)}
+.mc-tags span.hot{background:#fff1e5;color:var(--orange)}
+.add-btn{background:var(--green);color:#fff;border:none;width:100%;padding:13px;border-radius:14px;font-family:'Poppins';
+  font-weight:600;font-size:.88rem;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.add-btn:hover{background:var(--green-dark);letter-spacing:.5px}
+.add-btn.added{background:var(--orange)}
+.menu-empty{text-align:center;padding:60px 20px;color:var(--gray);grid-column:1/-1}
+
+/* ===== INFO STRIP ===== */
+.strip{background:var(--green-dark);color:#fff;padding:50px 5%}
+.strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.strip-item{display:flex;gap:14px;align-items:flex-start}
+.strip-item svg{width:34px;height:34px;flex-shrink:0;stroke:var(--orange)}
+.strip-item strong{display:block;font-size:.95rem;margin-bottom:4px}
+.strip-item small{color:rgba(255,255,255,.65);font-weight:300;font-size:.82rem;line-height:1.5}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;max-width:1100px;margin:0 auto}
+.about-visual{position:relative;height:420px;border-radius:26px;background:linear-gradient(145deg,var(--green),var(--green-dark));
+  display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--shadow)}
+.about-visual svg{width:70%;animation:float 4s ease-in-out infinite}
+.about-visual::before{content:'';position:absolute;width:300px;height:300px;background:rgba(255,122,26,.15);border-radius:50%;top:-80px;right:-80px}
+.about-txt h2{font-size:clamp(2rem,4vw,2.8rem);color:var(--green-dark);margin-bottom:18px}
+.about-txt p{color:var(--gray);font-weight:300;line-height:1.7;margin-bottom:16px}
+.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.feat{display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:500}
+.feat svg{width:22px;height:22px;stroke:var(--green);flex-shrink:0}
+
+/* ===== REVIEWS ===== */
+.reviews{background:#fff}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;max-width:1100px;margin:0 auto}
+.rev-card{background:var(--cream);border-radius:20px;padding:28px;box-shadow:var(--shadow);transition:transform .3s}
+.rev-card:hover{transform:translateY(-5px)}
+.rev-stars{color:#fbbf24;font-size:1.05rem;letter-spacing:2px;margin-bottom:14px}
+.rev-card p{font-size:.9rem;font-weight:300;line-height:1.6;color:#374151;font-style:italic}
+.rev-card strong{display:block;margin-top:16px;font-size:.88rem;color:var(--green-dark)}
+.rev-card small{color:var(--gray);font-size:.75rem}
+
+/* ===== CART DRAWER ===== */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:-440px;width:min(420px,100vw);height:100vh;background:#fff;z-index:210;
+  transition:right .35s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.2)}
+.drawer.open{right:0}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid #f0ead9}
+.drawer-head h3{font-size:1.5rem;color:var(--green-dark)}
+.drawer-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--gray)}
+.drawer-items{flex:1;overflow-y:auto;padding:20px 24px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px dashed #eee3cd}
+.ci-info strong{display:block;font-size:.9rem;color:var(--dark)}
+.ci-info small{color:var(--gray);font-size:.76rem}
+.qty-ctrl{display:flex;align-items:center;gap:10px}
+.qty-ctrl button{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--green);background:#fff;color:var(--green);
+  font-weight:700;cursor:pointer;font-size:.95rem;transition:all .2s}
+.qty-ctrl button:hover{background:var(--green);color:#fff}
+.qty-ctrl span{font-weight:600;min-width:20px;text-align:center;font-size:.92rem}
+.ci-price{font-family:'Bebas Neue';font-size:1.15rem;color:var(--orange);white-space:nowrap}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--gray)}
+.cart-empty svg{width:60px;height:60px;stroke:#d6ccb5;margin-bottom:14px}
+.drawer-foot{padding:20px 24px;border-top:1px solid #f0ead9;background:var(--cream)}
+.total-row{display:flex;justify-content:space-between;font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.total-row small{font-weight:400;color:var(--gray);font-size:.75rem}
+.total-row.grand{color:var(--green-dark);font-size:1.2rem;margin:10px 0 16px}
+.checkout-btn{width:100%;background:#25d366;color:#fff;border:none;padding:16px;border-radius:14px;font-family:'Poppins';
+  font-weight:700;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s}
+.checkout-btn:hover{background:#1eb856;transform:translateY(-2px)}
+.clear-btn{width:100%;background:none;border:none;color:var(--gray);font-size:.78rem;margin-top:10px;cursor:pointer;text-decoration:underline}
+.delivery-opts{display:flex;gap:10px;margin-bottom:14px}
+.delivery-opts button{flex:1;padding:10px;border-radius:12px;border:2px solid #e5ddcf;background:#fff;font-family:'Poppins';
+  font-weight:600;font-size:.82rem;cursor:pointer;color:var(--gray);transition:all .2s}
+.delivery-opts button.sel{border-color:var(--green);background:#eef7f0;color:var(--green)}
+
+/* ===== FLOAT WHATS ===== */
+.float-wa{position:fixed;bottom:24px;right:24px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(37,211,102,.45);z-index:150;cursor:pointer;
+  transition:transform .25s;animation:waPulse 2.5s infinite}
+.float-wa:hover{transform:scale(1.12)}
+.float-wa svg{width:30px;height:30px;fill:#fff}
+
+/* ===== FOOTER ===== */
+footer{background:var(--dark);color:#fff;padding:60px 5% 30px}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px;max-width:1100px;margin:0 auto 40px}
+.foot-grid h4{font-family:'Bebas Neue';font-size:1.3rem;letter-spacing:2px;color:var(--orange);margin-bottom:16px}
+.foot-grid p, .foot-grid a{color:rgba(255,255,255,.65);font-size:.85rem;font-weight:300;text-decoration:none;line-height:1.9;display:block;transition:color .2s}
+.foot-grid a:hover{color:var(--orange)}
+.foot-bottom{text-align:center;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);font-size:.78rem}
+
+/* toast */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;
+  padding:12px 26px;border-radius:50px;font-size:.85rem;font-weight:500;z-index:300;opacity:0;pointer-events:none;
+  transition:all .35s;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.7}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes waPulse{0%{box-shadow:0 8px 25px rgba(37,211,102,.45)}50%{box-shadow:0 8px 25px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,.12)}100%{box-shadow:0 8px 25px rgba(37,211,102,.45)}}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p{margin:20px auto 32px}
+  .hero-ctas,.hero-stats{justify-content:center}
+  .hero-croco svg{max-width:240px}
+  .about-grid{grid-template-columns:1fr}
+  .about-visual{height:300px}
+  .nav-links{position:fixed;top:64px;right:-100%;flex-direction:column;background:#fff;width:100%;padding:24px;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);transition:right .3s;gap:18px}
+  .nav-links.open{right:0}
+  .burger-menu{display:block}
+  .menu-controls{top:60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <a class="nav-logo" href="#inicio">
+    <img src="imgs/crocodilo-logo.png" alt="Crocodilos" style="width:46px;height:46px;object-fit:cover;border-radius:12px;animation:float 3s ease-in-out infinite">
+    <span>CROCO<em>DILOS</em></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#cardapio">Cardápio</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div style="display:flex;gap:12px;align-items:center">
+    <button class="cart-btn" onclick="toggleDrawer(true)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2 3h3l2.6 12.5a2 2 0 0 0 2 1.5h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+      Meu Pedido
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="burger-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="inicio">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> Aberto agora · até 23h30</div>
+      <h1>SABOR QUE <span>MORDE DE VOLTA</span></h1>
+      <p>Hambúrgueres artesanais, grelhados generosos, feijoada premiada e o melhor strogonoff de Balneário Camboriú. Peça em segundos, direto pelo WhatsApp.</p>
+      <div class="hero-ctas">
+        <a href="#cardapio" class="btn-primary">Ver Cardápio
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/5547992808665?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20no%20Crocodilos!" target="_blank" class="btn-ghost">Pedir no WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>4,4 ★</strong><small>1.754 avaliações</small></div>
+        <div><strong>40+</strong><small>itens no cardápio</small></div>
+        <div><strong>R$40–60</strong><small>por pessoa</small></div>
+      </div>
+    </div>
+    <div class="hero-croco">
+      <div style="position:relative">
+        <div style="position:absolute;inset:-30px;border-radius:50%;background:rgba(255,122,26,.18);filter:blur(10px);animation:pulse 5s ease-in-out infinite"></div>
+        <img src="imgs/crocodilo-logo.png" alt="Jacaré chef Crocodilos" style="position:relative;width:100%;max-width:340px;border-radius:28px;box-shadow:0 25px 60px rgba(0,0,0,.4);animation:float 4s ease-in-out infinite">
+      </div>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:60px"><path d="M0 40 Q360 0 720 30 T1440 20 V70 H0Z" fill="#fff8ee"/></svg>
+</header>
+
+<!-- ===== MENU ===== -->
+<section id="cardapio" style="padding-top:40px">
+  <div class="section-head reveal">
+    <span class="section-tag">Cardápio Completo</span>
+    <h2>MONTE SEU PEDIDO</h2>
+    <p>Escolha seus favoritos, adicione ao pedido e finalize direto pelo WhatsApp. Rápido, prático e sem fila.</p>
+  </div>
+  <div class="menu-controls">
+    <div class="tabs" id="tabs"></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="search" placeholder="Buscar no cardápio... (ex: strogonoff, açaí, burger)">
+    </div>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- ===== INFO STRIP ===== -->
+<div class="strip">
+  <div class="strip-grid">
+    <div class="strip-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <div><strong>Localização privilegiada</strong><small>Av. Brasil, 2983 — Centro, Balneário Camboriú / SC</small></div>
+    </div>
+    <div class="strip-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <div><strong>Todos os dias</strong><small>Funcionamento até 23h30 · refeição no local, viagem e entrega</small></div>
+    </div>
+    <div class="strip-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 11h18M5 11V7a7 7 0 0 1 14 0v4M8 21h8"/></svg>
+      <div><strong>Pedido sem complicação</strong><small>Peça pelo site e receba a confirmação no WhatsApp em instantes</small></div>
+    </div>
+    <div class="strip-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 16.9 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+      <div><strong>Avaliação 4,4 ★</strong><small>1.754 avaliações reais no Google · porções bem servidas</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="sobre">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <img src="imgs/crocodilo-logo.png" alt="Crocodilos" style="width:62%;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:float 4s ease-in-out infinite">
+    </div>
+    <div class="about-txt reveal">
+      <span class="section-tag">Nossa História</span>
+      <h2>O GRILL QUE É REFERÊNCIA EM BC</h2>
+      <p>Na Av. Brasil, no coração de Balneário Camboriú, o Crocodilos conquistou moradores e turistas com porções generosas, ingredientes frescos e aquele tempero caseiro que só quem cozinha com carinho entrega.</p>
+      <p>Do hambúrguer artesanal de 150g ao filé mignon acebolado, cada prato é preparado na hora — e agora você pede tudo em poucos cliques.</p>
+      <div class="about-feats">
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Carnes selecionadas</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Molhos feitos na casa</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Ambiente familiar</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Preço justo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="avaliacoes">
+  <div class="section-head reveal">
+    <span class="section-tag">Quem provou, aprovou</span>
+    <h2>O QUE DIZEM NOSSOS CLIENTES</h2>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card reveal">
+      <div class="rev-stars">★★★★★</div>
+      <p>"Ótimo e simpático atendimento, boa localização, espaço amplo e bem iluminado. Comida correta, saborosa e preço justo."</p>
+      <strong>Leila Mota</strong><small>Local Guide · Google Maps</small>
+    </div>
+    <div class="rev-card reveal">
+      <div class="rev-stars">★★★★★</div>
+      <p>"The food was very fresh and cooked well. Price was average. I would recommend this restaurant."</p>
+      <strong>Renato J</strong><small>Avaliação no Google Maps</small>
+    </div>
+    <div class="rev-card reveal">
+      <div class="rev-stars">★★★★★</div>
+      <p>"O hambúrguer é muito bom e a parmegiana então... nem se fala. Volto toda vez que venho a Balneário!"</p>
+      <strong>Clientes Crocodilos</strong><small>Mais pedidos: Strogonoff e Filé ao Molho Madeira</small>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="overlay" id="overlay" onclick="toggleDrawer(false)"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>MEU PEDIDO</h3>
+    <button class="drawer-close" onclick="toggleDrawer(false)">✕</button>
+  </div>
+  <div style="padding:16px 24px 0">
+    <div class="delivery-opts" id="deliveryOpts">
+      <button class="sel" data-mode="Retirada no local" onclick="setMode(this)">🛍️ Retirada</button>
+      <button data-mode="Entrega" onclick="setMode(this)">🛵 Entrega</button>
+    </div>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===== FLOAT WHATS ===== -->
+<a class="float-wa" href="https://wa.me/5547992808665?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Crocodilos!" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<!-- ===== FOOTER ===== -->
+<footer id="contato">
+  <div class="foot-grid">
+    <div>
+      <h4 style="display:flex;align-items:center;gap:10px"><img src="imgs/crocodilo-logo.png" style="width:36px;height:36px;border-radius:8px">CROCODILOS</h4>
+      <p>Grill e lanches no coração de Balneário Camboriú. Comida bem servida, saborosa e com preço justo desde sempre.</p>
+    </div>
+    <div>
+      <h4>CONTATO</h4>
+      <a href="tel:+5547992808665">📞 (47) 99280-8665</a>
+      <a href="https://instagram.com" target="_blank">📷 Instagram</a>
+      <a href="https://linktr.ee" target="_blank">🔗 Cardápio completo</a>
+    </div>
+    <div>
+      <h4>ENDEREÇO</h4>
+      <p>Av. Brasil, 2983 — Centro<br>Balneário Camboriú / SC<br>CEP 88330-060</p>
+    </div>
+    <div>
+      <h4>FUNCIONAMENTO</h4>
+      <p>Todos os dias<br>Até 23h30<br><br>Refeição no local · Para viagem · Entrega sem contato</p>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 Crocodilos Grill e Lanches · Av. Brasil, 2983, Balneário Camboriú · Taxa de serviço 10% opcional no salão</div>
+</footer>
+
+<script>
+/* ================= CARDÁPIO ================= */
+const MENU = [
+  // BURGERS
+  {cat:"Burgers", name:"Burger", price:26, desc:"Pão, hambúrguer 150g, queijo mussarela e maionese da casa.", tags:["Clássico"]},
+  {cat:"Burgers", name:"X-Salada", price:32, desc:"Pão, hambúrguer 150g, queijo mussarela, alface, tomate e maionese da casa.", tags:["Clássico"]},
+  {cat:"Burgers", name:"Classic Burger", price:36, desc:"Pão, hambúrguer 150g, queijo cheddar, picles, cebola grelhada, alface e maionese americana.", tags:["Especial"]},
+  {cat:"Burgers", name:"Bacon", price:40, desc:"Pão, hambúrguer 150g, queijo mussarela, bacon, alface, tomate e maionese da casa.", tags:["Especial"]},
+  {cat:"Burgers", name:"Croc Bacon", price:44, desc:"Pão, hambúrguer 150g, queijo mussarela, bacon, ovo, alface, tomate e maionese da casa.", tags:["Da Casa","hot"]},
+  {cat:"Burgers", name:"Double Cheddar", price:44, desc:"Pão, 2 hambúrgueres 150g, queijo cheddar e maionese da casa.", tags:["hot"]},
+  {cat:"Burgers", name:"Croc Crocodilos", price:44, desc:"Pão, 2 hambúrgueres 150g, queijo mussarela, cebola grelhada, bacon e molho barbecue.", tags:["Da Casa","hot"]},
+  {cat:"Burgers", name:"Frango", price:35, desc:"Pão, frango em cubos 120g, queijo mussarela, alface, tomate e maionese da casa.", tags:[]},
+  {cat:"Burgers", name:"Filé Mignon", price:55, desc:"Pão, filé de mignon 150g, queijo mussarela, alface, tomate e maionese da casa.", tags:["Premium"]},
+  {cat:"Burgers", name:"Veggie", price:36, desc:"Pão, hambúrguer de grão de bico 150g, cebola grelhada, creme de tofu.", tags:["Vegetariano"]},
+  // BURGERS KIDS
+  {cat:"Kids", name:"Kids Burger", price:24, desc:"Pão, hambúrguer 100g e queijo mussarela.", tags:["Kids"]},
+  {cat:"Kids", name:"Kids Salada", price:26, desc:"Pão, hambúrguer 100g, queijo mussarela, alface, tomate e maionese da casa.", tags:["Kids"]},
+  {cat:"Kids", name:"Kids Combo", price:38, desc:"Kids burger + fritas + suco (sabor a escolher).", tags:["Kids","hot"]},
+  {cat:"Kids", name:"Croco Sorriso — Hambúrguer", price:35, desc:"Acompanha arroz, feijão preto, batata frita ou purê, farofa e vinagrete.", tags:["Kids"]},
+  {cat:"Kids", name:"Croco Sorriso — Frango", price:35, desc:"Tiras de peito de frango com arroz, feijão preto, fritas ou purê, farofa e vinagrete.", tags:["Kids"]},
+  {cat:"Kids", name:"Croco Sorriso — Carne", price:38, desc:"Tiras de carne bovina com arroz, feijão preto, fritas ou purê, farofa e vinagrete.", tags:["Kids"]},
+  {cat:"Kids", name:"Croco Strogonoff — Carne", price:38, desc:"Strogonoff de carne acompanhado de arroz e fritas.", tags:["Kids"]},
+  {cat:"Kids", name:"Croco Strogonoff — Frango", price:38, desc:"Strogonoff de frango acompanhado de arroz e fritas.", tags:["Kids"]},
+  // SANDUÍCHES
+  {cat:"Sanduíches", name:"Misto Quente", price:18, desc:"Pão, presunto e queijo.", tags:["Clássico"]},
+  {cat:"Sanduíches", name:"Americano", price:20, desc:"Pão, presunto, queijo, ovo, alface e tomate.", tags:[]},
+  {cat:"Sanduíches", name:"Choupira", price:38, desc:"Pão francês, maionese de chimichurri, linguiça 100% suína, queijo mussarela, alface e vinagrete.", tags:["Da Casa","hot"]},
+  {cat:"Sanduíches", name:"Sanduíche de Frango", price:38, desc:"Pão francês, queijo mussarela, tiras de frango, bacon, queijo cheddar e alface americana.", tags:[]},
+  {cat:"Sanduíches", name:"Sanduíche de Mignon", price:45, desc:"Pão ciabatta, queijo mussarela, maionese da casa, tiras de mignon, vinagrete e alface americana.", tags:["Premium"]},
+  {cat:"Sanduíches", name:"Hot Dog", price:26, desc:"Pão tradicional, 2 salsichas, molho de tomate, batata palha, maionese, catchup e mostarda.", tags:[]},
+  // PETISCOS
+  {cat:"Petiscos", name:"Batata Frita 400g", price:45, desc:"Porção simples, crocante por fora e macia por dentro.", tags:["Para dividir"]},
+  {cat:"Petiscos", name:"Isca de Frango com Queijo e Bacon 800g", price:85, desc:"Iscas de frango recheadas com queijo e bacon.", tags:["Para dividir","hot"]},
+  {cat:"Petiscos", name:"Polenta Frita 400g", price:45, desc:"Polenta empanada e frita, crocante.", tags:["Para dividir"]},
+  {cat:"Petiscos", name:"Frango a Passarinho 600g", price:75, desc:"Acompanhado de molho tártaro.", tags:["Para dividir","hot"]},
+  {cat:"Petiscos", name:"Camarão Empanado 450g", price:110, desc:"Acompanhado de molho tártaro.", tags:["Premium"]},
+  {cat:"Petiscos", name:"Isca de Peixe 400g", price:80, desc:"Acompanhada de molho tártaro.", tags:[]},
+  {cat:"Petiscos", name:"Mexa na Camarão 600g", price:120, desc:"Camarões salteados na manteiga, alho, polenta frita, acompanhado de molho tártaro.", tags:["Premium","hot"]},
+  {cat:"Petiscos", name:"Filé de Peito de Frango Acebolado 500g", price:70, desc:"Frango grelhado com cebolas caramelizadas.", tags:[]},
+  {cat:"Petiscos", name:"Filé Mignon Acebolado 500g", price:130, desc:"Mignon grelhado com cebolas, acompanha molho barbecue.", tags:["Premium"]},
+  // GRELHADOS (serve 2 pessoas)
+  {cat:"Grelhados", name:"Grelhado Ouro", price:82, desc:"Serve 2 pessoas. Acompanha arroz, feijão preto, batata frita ou purê, alface e tomate.", tags:["Serve 2"]},
+  {cat:"Grelhados", name:"Grelhado Contra Filé", price:95, desc:"Serve 2 pessoas. Acompanha arroz, feijão preto, batata frita ou purê, alface e tomate.", tags:["Serve 2"]},
+  {cat:"Grelhados", name:"Grelhado Filé Mignon", price:97, desc:"Serve 2 pessoas. Medalhões suculentos com acompanhamentos completos.", tags:["Serve 2","Premium"]},
+  {cat:"Grelhados", name:"Bife a Cavalo", price:70, desc:"Grelhado coberto por ovo frito, acompanha arroz, purê de batata, alface e tomate.", tags:["Mais pedido","hot"]},
+  {cat:"Grelhados", name:"Parmegiana", price:70, desc:"Grelhado empanado com queijo e molho de tomate, acompanha arroz e batata frita.", tags:["Mais pedido","hot"]},
+  {cat:"Grelhados", name:"Molho Madeira", price:70, desc:"Grelhado coberto com molho madeira e champignon, acompanha arroz, batata frita e legumes.", tags:[]},
+  {cat:"Grelhados", name:"Molho de Queijos", price:70, desc:"Grelhado coberto com molho de queijos, acompanha arroz, batata frita e legumes.", tags:[]},
+  {cat:"Grelhados", name:"Molho Mostarda Dijon", price:70, desc:"Grelhado coberto com molho mostarda e champignon, acompanha arroz, batata frita e legumes.", tags:[]},
+  // MILANESAS
+  {cat:"Milanesas", name:"Milanesa de Frango", price:45, desc:"Empanada, acompanha arroz e fritas.", tags:["Clássico"]},
+  {cat:"Milanesas", name:"Milanesa Contra Filé", price:80, desc:"Empanada, acompanha arroz e fritas.", tags:["Premium"]},
+  {cat:"Milanesas", name:"Milanesa Filé Mignon", price:78, desc:"Empanada, acompanha arroz e fritas.", tags:["Premium"]},
+  // FEIJOADA
+  {cat:"Feijoada", name:"Feijoada Bisteca Suína", price:45, desc:"Acompanha arroz, couve refogada com bacon e farofa.", tags:["Tradicional"]},
+  {cat:"Feijoada", name:"Feijoada Contra Filé", price:52, desc:"Acompanha arroz, couve refogada com bacon e farofa.", tags:["Tradicional"]},
+  {cat:"Feijoada", name:"Feijoada Filé Mignon", price:64, desc:"Acompanha arroz, couve refogada com bacon e farofa.", tags:["Tradicional","Premium"]},
+  // MASSAS
+  {cat:"Massas", name:"Fettuccine à Bolonhesa", price:42, desc:"Massa longa coberta com molho de tomate e carne moída.", tags:[]},
+  {cat:"Massas", name:"Ravioli de Frango", price:42, desc:"Massa longa com molho de tomate acompanha peito de frango empanado.", tags:[]},
+  {cat:"Massas", name:"Fettuccine ao Molho de Camarão", price:60, desc:"Massa com molho de camarão, tomate e brócolis.", tags:["Premium","hot"]},
+  {cat:"Massas", name:"Fettuccine da Casa", price:46, desc:"Frango em cubos, champignon, molho branco.", tags:["Da Casa","hot"]},
+  {cat:"Massas", name:"Fettuccine à Parisiense", price:42, desc:"Molho branco cremoso. Acrescente: molho de camarão +R$5 ou salmão em cubos +R$5.", tags:[]},
+  // STROGONOFF
+  {cat:"Strogonoff", name:"Strogonoff de Frango", price:45, desc:"Acompanha champignon, arroz e batata frita.", tags:["Mais pedido","hot"]},
+  {cat:"Strogonoff", name:"Strogonoff de Carne", price:50, desc:"Acompanha champignon, arroz e batata frita.", tags:["Mais pedido","hot"]},
+  // PEIXES
+  {cat:"Peixes", name:"Peixe à Milanesa", price:48, desc:"Filé de peixe empanado, acompanha arroz, batata frita e legumes.", tags:[]},
+  {cat:"Peixes", name:"Peixe Empado c/ Molho de Queijos", price:50, desc:"Filé empado coberto com molho de queijos, acompanha arroz, batata frita e legumes.", tags:[]},
+  {cat:"Peixes", name:"Peixe Empado c/ Molho de Camarão", price:58, desc:"Filé empado coberto com molho de camarão, acompanha arroz, batata frita e legumes.", tags:[]},
+  {cat:"Peixes", name:"Salmão com Ervas", price:72, desc:"Grelhado coberto com ervas, acompanha arroz, batata frita e legumes.", tags:["Premium"]},
+  {cat:"Peixes", name:"Salmão c/ Molho de Maracujá", price:72, desc:"Grelhado coberto com molho de maracujá, acompanha arroz, batata frita e legumes.", tags:["Premium","hot"]},
+  {cat:"Peixes", name:"Camarão c/ Molho de Camarão", price:82, desc:"Grelhado coberto com molho de camarão, acompanha arroz, batata frita e legumes.", tags:["Premium","hot"]},
+  // CAMARÕES
+  {cat:"Camarões", name:"Camarão Sertanejo", price:70, desc:"Camarão empado, acompanha arroz, batata frita, alface e tomate.", tags:["hot"]},
+  {cat:"Camarões", name:"Camarão à Parmegiana", price:70, desc:"Camarão empado com queijo e molho de tomate, acompanha arroz e batata frita.", tags:[]},
+  {cat:"Camarões", name:"Camarão ao Molho de Queijos", price:70, desc:"Camarão empado com molho de queijo, acompanha arroz e batata frita.", tags:[]},
+  {cat:"Camarões", name:"Camarão Crocodilos", price:70, desc:"Camarão salteado com bacon e brócolis, acompanha arroz e batata frita.", tags:["Da Casa","hot"]},
+  // SALADAS
+  {cat:"Saladas", name:"Caesar Salad", price:38, desc:"Alface americana, croutons, queijo parmesão, molho caesar e azeite de aceto balsâmico.", tags:["Fit"]},
+  {cat:"Saladas", name:"Croc Salada", price:36, desc:"Alface americana, rúcula, tomate cereja, queijo parmesão, champignon, azeite de oliva e redução de aceto balsâmico.", tags:["Da Casa"]},
+  {cat:"Saladas", name:"Mix de Folhas", price:30, desc:"Alface americana, alface crespa, rúcula, cenoura ralada, tomate cereja e molho da casa.", tags:["Fit"]},
+  // SOBREMESAS
+  {cat:"Sobremesas", name:"Açaí 300ml", price:28, desc:"Com fruta à escolha (banana ou morango). Adicione leite condensado +R$4.", tags:["Gelado"]},
+  {cat:"Sobremesas", name:"Petit Gâteau", price:30, desc:"Bolinho quente de chocolate com casca crocante e sorvete.", tags:["Quente","hot"]},
+  {cat:"Sobremesas", name:"Milk Shake 400ml", price:28, desc:"Sabores: morango, cacau, ovomaltine ou chocolate.", tags:["Gelado"]},
+  // BEBIDAS
+  {cat:"Bebidas", name:"Água sem/com gás", price:5, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Refrigerante Lata", price:8, desc:"", tags:[]},
+  {cat:"Bebidas", name:"H2O", price:10, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Del Valle / Ice Tea", price:10, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Suco 400ml", price:15, desc:"Laranja, abacaxi c/ hortelã, limão, limão c/ morango, acerola, maracujá ou uva.", tags:["Natural"]},
+  {cat:"Bebidas", name:"Suco Kapo", price:8, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Cerveja Long Neck", price:14, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Cerveja 600ml", price:22, desc:"", tags:["Gelada"]},
+  {cat:"Bebidas", name:"Chopp Pilsen 350ml", price:16, desc:"Chopp estupando de gelado.", tags:["Gelada","hot"]},
+  {cat:"Bebidas", name:"Vinho (taça)", price:16, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Energético Red Bull", price:18, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Caipirinha de Cachaça", price:20, desc:"", tags:["hot"]},
+  {cat:"Bebidas", name:"Caipirinha Smirnoff", price:24, desc:"", tags:[]},
+  {cat:"Bebidas", name:"Caipirinha Absolut", price:24, desc:"", tags:[]},
+];
+const CATS = ["Tudo", ...new Set(MENU.map(m=>m.cat))];
+const fmt = v => "R$ " + v.toFixed(2).replace(".", ",");
+let cart = JSON.parse(localStorage.getItem("crocoCart")||"[]");
+let activeCat = "Tudo";
+let mode = "Retirada no local";
+
+/* Tabs */
+const tabsEl = document.getElementById("tabs");
+CATS.forEach(c=>{
+  const b = document.createElement("button");
+  b.className = "tab" + (c==="Tudo"?" active":"");
+  b.textContent = c;
+  b.onclick = ()=>{ activeCat=c; document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); b.classList.add("active"); renderMenu(); };
+  tabsEl.appendChild(b);
+});
+
+/* Search */
+document.getElementById("search").addEventListener("input", renderMenu);
+
+function imgFor(m){
+  const n = m.name.toLowerCase();
+  if(m.cat==="Burgers") return "imgs/cat-burgers.jpg";
+  if(m.cat==="Kids") return "imgs/cat-kids.jpg";
+  if(n.includes("hot dog")) return "imgs/cat-hotdog.jpg";
+  if(m.cat==="Sanduíches") return "imgs/cat-sanduiches.jpg";
+  if(n.includes("batata frita")||n.includes("polenta")) return "imgs/cat-fritas.jpg";
+  if(n.includes("frango a passarinho")) return "imgs/cat-petiscos2.jpg";
+  if(n.includes("isca de frango")||n.includes("acebolado")) return "imgs/cat-frango.jpg";
+  if(m.cat==="Petiscos"||m.cat==="Camarões") return "imgs/cat-petiscos.jpg";
+  if(m.cat==="Grelhados") return "imgs/cat-grelhados.jpg";
+  if(m.cat==="Milanesas"||n.includes("parmegiana")) return "imgs/cat-milanesas.jpg";
+  if(m.cat==="Feijoada") return "imgs/cat-feijoada.jpg";
+  if(m.cat==="Massas") return n.includes("parisiense") ? "imgs/cat-massas2.jpg" : "imgs/cat-massas.jpg";
+  if(m.cat==="Strogonoff") return "imgs/cat-strogonoff.jpg";
+  if(n.includes("salmão")) return "imgs/cat-peixes.jpg";
+  if(m.cat==="Peixes") return "imgs/cat-petiscos.jpg";
+  if(m.cat==="Saladas") return "imgs/cat-saladas.jpg";
+  if(n.includes("açaí")) return "imgs/cat-sobremesas.jpg";
+  if(n.includes("petit")) return "imgs/cat-petit.jpg";
+  if(n.includes("milk")) return "imgs/cat-milkshake.jpg";
+  return "imgs/cat-bebidas.jpg";
+}
+function renderMenu(){
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const grid = document.getElementById("menuGrid");
+  const items = MENU.filter(m => (activeCat==="Tudo"||m.cat===activeCat) && (m.name.toLowerCase().includes(q)||m.desc.toLowerCase().includes(q)));
+  grid.innerHTML = "";
+  if(!items.length){ grid.innerHTML = `<div class="menu-empty"><h3 style="color:var(--green-dark);font-size:1.5rem;margin-bottom:8px">Nada por aqui...</h3><p>Busque por outro item ou categoria.</p></div>`; return; }
+  items.forEach((m,i)=>{
+    const card = document.createElement("div");
+    card.className = "menu-card";
+    card.style.animation = `fadeUp .5s ${i*0.04}s both`;
+    card.innerHTML = `
+      <img class="mc-img" src="${imgFor(m)}" alt="${m.name}" loading="lazy" onerror="this.style.display='none'">
+      <div class="mc-body">
+      <div class="mc-top"><h3>${m.name}</h3><span class="mc-price">${fmt(m.price)}</span></div>
+      ${m.tags.length?`<div class="mc-tags">${m.tags.map(t=>`<span class="${t==="hot"?"hot":""}">${t==="hot"?"🔥 Mais pedido":t}</span>`).join("")}</div>`:"<div style='height:6px'></div>"}
+      <p>${m.desc||""}</p>
+      <button class="add-btn" onclick="addToCart('${m.name.replace(/'/g,"\\'")}',${m.price},this)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Adicionar ao pedido
+      </button></div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* Cart */
+function addToCart(name, price, btn){
+  const found = cart.find(c=>c.name===name);
+  if(found) found.qty++;
+  else cart.push({name, price, qty:1});
+  saveCart(); renderCart(); bumpCount();
+  btn.classList.add("added");
+  btn.innerHTML = "✓ Adicionado!";
+  setTimeout(()=>{ btn.classList.remove("added"); btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Adicionar ao pedido`; }, 900);
+  toast(`${name} adicionado!`);
+}
+function changeQty(name, d){
+  const it = cart.find(c=>c.name===name);
+  if(!it) return;
+  it.qty += d;
+  if(it.qty<=0) cart = cart.filter(c=>c.name!==name);
+  saveCart(); renderCart();
+}
+function saveCart(){ localStorage.setItem("crocoCart", JSON.stringify(cart)); }
+function bumpCount(){
+  const cc = document.getElementById("cartCount");
+  cc.classList.add("show");
+  cc.style.transform = "scale(1.35)";
+  setTimeout(()=>cc.style.transform="scale(1)", 200);
+}
+function renderCart(){
+  const totalQty = cart.reduce((s,c)=>s+c.qty,0);
+  const cc = document.getElementById("cartCount");
+  cc.textContent = totalQty;
+  cc.classList.toggle("show", totalQty>0);
+  const box = document.getElementById("drawerItems");
+  const foot = document.getElementById("drawerFoot");
+  if(!cart.length){
+    box.innerHTML = `<div class="cart-empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2 3h3l2.6 12.5a2 2 0 0 0 2 1.5h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+      <p>Seu pedido está vazio.<br>Que tal um burger artesanal? 🍔</p></div>`;
+    foot.innerHTML = "";
+    return;
+  }
+  box.innerHTML = cart.map(c=>`
+    <div class="cart-item">
+      <div class="ci-info"><strong>${c.name}</strong><small>${fmt(c.price)} un.</small></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="qty-ctrl">
+          <button onclick="changeQty('${c.name.replace(/'/g,"\\'")}',-1)">−</button>
+          <span>${c.qty}</span>
+          <button onclick="changeQty('${c.name.replace(/'/g,"\\'")}',1)">+</button>
+        </div>
+        <span class="ci-price">${fmt(c.price*c.qty)}</span>
+      </div>
+    </div>`).join("");
+  const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const taxa = subtotal*0.10;
+  const total = subtotal;
+  foot.innerHTML = `
+    <div class="total-row"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+    <div class="total-row"><span>Taxa de serviço (10%, opcional)</span><span>${fmt(taxa)}</span></div>
+    <div class="total-row grand"><span>Total</span><span>${fmt(total)}</span></div>
+    <button class="checkout-btn" onclick="checkout()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm4.6 12.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/></svg>
+      Finalizar no WhatsApp
+    </button>
+    <button class="clear-btn" onclick="clearCart()">Limpar pedido</button>`;
+}
+function setMode(btn){
+  document.querySelectorAll("#deliveryOpts button").forEach(b=>b.classList.remove("sel"));
+  btn.classList.add("sel");
+  mode = btn.dataset.mode;
+}
+function checkout(){
+  if(!cart.length) return;
+  const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  let msg = "🐊 *PEDIDO — CROCODILOS*\n━━━━━━━━━━━━━━\n";
+  cart.forEach(c=>{ msg += `▪ ${c.qty}x ${c.name} — ${fmt(c.price*c.qty)}\n`; });
+  msg += `━━━━━━━━━━━━━━\nSubtotal: ${fmt(subtotal)}\nTaxa de serviço (10%, opcional): ${fmt(subtotal*0.10)}\n*Total: ${fmt(subtotal)}*\n📦 ${mode}\n\nNome: \n${mode==="Entrega"?"Endereço: \n":""}Pagamento: `;
+  window.open("https://wa.me/5547992808665?text=" + encodeURIComponent(msg), "_blank");
+  toast("Abrindo WhatsApp para enviar seu pedido!");
+}
+function clearCart(){ cart=[]; saveCart(); renderCart(); }
+function toggleDrawer(open){
+  document.getElementById("drawer").classList.toggle("open", open);
+  document.getElementById("overlay").classList.toggle("open", open);
+}
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+/* Scroll fx */
+window.addEventListener("scroll", ()=>{
+  document.getElementById("nav").classList.toggle("scrolled", window.scrollY>40);
+  document.querySelectorAll(".reveal").forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add("visible");
+  });
+});
+document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>document.getElementById("navLinks").classList.remove("open")));
+
+renderMenu(); renderCart();
+setTimeout(()=>document.querySelectorAll(".reveal").forEach(el=>{
+  if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add("visible");
+}),300);
+</script>
+</body>
+</html>
